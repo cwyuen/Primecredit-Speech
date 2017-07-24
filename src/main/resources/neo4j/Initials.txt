@@ -1,0 +1,104 @@
+create (b:Initials{name:"b"})
+create (p:Initials{name:"p"})
+create (m:Initials{name:"m"})
+create (w:Initials{name:"w"})
+
+create (b)-[:voice]->(b)
+create (b)-[:voice]->(p)
+create (b)-[:voice]->(m)
+create (b)-[:voice]->(w)
+	
+create (p)-[:voice]->(b)
+create (p)-[:voice]->(p)
+create (p)-[:voice]->(m)
+create (p)-[:voice]->(w)
+	
+create (m)-[:voice]->(b)
+create (m)-[:voice]->(p)
+create (m)-[:voice]->(m)
+create (m)-[:voice]->(w)
+	
+create (w)-[:voice]->(b)
+create (w)-[:voice]->(p)
+create (w)-[:voice]->(m)
+create (w)-[:voice]->(w)
+
+create (f:Initials{name:"f"})
+create (f)-[:voice]->(f)
+
+
+create (d:Initials{name:"d"})
+create (t:Initials{name:"t"})
+create (n:Initials{name:"n"})
+create (l:Initials{name:"l"})
+
+create (d)-[:voice]->(d)
+create (d)-[:voice]->(t)
+create (d)-[:voice]->(n)
+create (d)-[:voice]->(l)
+
+create (t)-[:voice]->(d)
+create (t)-[:voice]->(t)
+create (t)-[:voice]->(n)
+create (t)-[:voice]->(l)
+
+create (n)-[:voice]->(d)
+create (n)-[:voice]->(t)
+create (n)-[:voice]->(n)
+create (n)-[:voice]->(l)
+
+create (l)-[:voice]->(d)
+create (l)-[:voice]->(t)
+create (l)-[:voice]->(n)
+create (l)-[:voice]->(l)
+
+
+
+create (z:Initials{name:"z"})
+create (c:Initials{name:"c"})
+create (s:Initials{name:"s"})
+
+create (z)-[:voice]->(z)
+create (z)-[:voice]->(c)
+create (z)-[:voice]->(s)
+
+create (c)-[:voice]->(z)
+create (c)-[:voice]->(c)
+create (c)-[:voice]->(s)
+
+create (s)-[:voice]->(z)
+create (s)-[:voice]->(c)
+create (s)-[:voice]->(s)
+
+
+create (j:Initials{name:"j"})
+create (j)-[:voice]->(j)
+
+
+create (g:Initials{name:"g"})
+create (k:Initials{name:"k"})
+create (ng:Initials{name:"ng"})
+
+create (g)-[:voice]->(g)
+create (g)-[:voice]->(k)
+create (g)-[:voice]->(ng)
+
+create (k)-[:voice]->(g)
+create (k)-[:voice]->(k)
+create (k)-[:voice]->(ng)
+
+create (ng)-[:voice]->(g)
+create (ng)-[:voice]->(k)
+create (ng)-[:voice]->(ng)
+
+
+create (gw:Initials{name:"gw"})
+create (kw:Initials{name:"kw"})
+
+create (gw)-[:voice]->(gw)
+create (gw)-[:voice]->(kw)
+create (kw)-[:voice]->(gw)
+create (kw)-[:voice]->(kw)
+
+create (h:Initials{name:"h"})
+create (h)-[:voice]->(h)

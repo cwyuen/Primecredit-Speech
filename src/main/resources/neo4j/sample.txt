@@ -1,0 +1,36 @@
+match (n1:Word {name:"販"}),(n2:Word {name:"人"}) with n1,n2
+match (n3:Word) ,
+where (n3.initials = n1.initials and n3.vowel = n1.vowel)
+or (n3.initials = n1.initials and n3.tone = n1.tone)
+or (n3.vowel = n1.vowel and n3.tone = n1.tone)
+(n4:Word)
+where (n4.initials = n2.initials and n4.vowel = n2.vowel)
+or (n4.initials = n2.initials and n4.tone = n2.tone)
+or (n4.vowel = n2.vowel and n4.tone = n2.tone)
+return n3, n4
+
+match (n1:Word {name:"包"}) with n1.initials as p1,n1
+match (n2:Initials {name:p1}) -[r1:voice]->(n3:Initials) with n1,n3
+match (n4:Word)
+where n4.initials = n3.name
+and n4.vowel = n1.vowel
+return n4
+
+
+match (n1:Word {name:"包"}) with n1.initials as p1,n1
+match (n2:Word {name:"苗"}) with n2.initials as p2,p1,n1,n2
+match (n3:Initials {name:p1}) -[r1:voice]->(n4:Initials) with p1,p2,n1,n2,n3,n4
+match (n5:Initials {name:p2}) -[r2:voice]->(n6:Initials) with p1,p2,n1,n2,n3,n4,n5,n6
+
+match (n7:Word) 
+where n7.initials = n4.name 
+and n7.vowel = n1.vowel
+with p1,p2,n1,n2,n3,n4,n5,n6,n7
+
+match (n8:Word) 
+where n8.initials = n6.name 
+and n8.vowel = n2.vowel
+with p1,p2,n1,n2,n3,n4,n5,n6,n7,n8
+
+match p3 = (n7)-[r:verb]->(n8) 
+return p3
