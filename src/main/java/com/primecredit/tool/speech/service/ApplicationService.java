@@ -18,6 +18,8 @@ public class ApplicationService {
 
 		logger.debug("Your application started with option names : ");
 		dictoryImportService.scan();
+		
+		//dictoryImportService.test();
 	}
 
 }

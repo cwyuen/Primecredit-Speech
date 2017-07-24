@@ -1,6 +1,11 @@
 package com.primecredit.tool.speech.dict.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
 
 @NodeEntity
 public class Word {
@@ -10,6 +15,9 @@ public class Word {
 	private String initials;
 	private String vowel;
 	private String tone;
+	
+	@Relationship(type = "verb", direction = Relationship.OUTGOING)
+	private List<VerbRelationship> verbs = new ArrayList<VerbRelationship>();
 	
 	public Long getId() {
 		return id;
@@ -51,5 +59,15 @@ public class Word {
 		sb.append(this.getTone());
 		sb.append(")");
 		return sb.toString();
+	}
+	public List<VerbRelationship> getVerbs() {
+		return verbs;
+	}
+	public void setVerbs(List<VerbRelationship> verbs) {
+		this.verbs = verbs;
+	}
+	
+	public void addVerbRelationship(VerbRelationship verb) {
+		this.verbs.add(verb);
 	}
 }
