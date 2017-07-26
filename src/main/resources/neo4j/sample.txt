@@ -34,3 +34,21 @@ with p1,p2,n1,n2,n3,n4,n5,n6,n7,n8
 
 match p3 = (n7)-[r:verb]->(n8) 
 return p3
+
+
+
+match (nw1:Word {name:"性"}),
+(ni1:Initials {name:nw1.initials}),
+(ni2:Initials) where ni2.x>= ni1.x-1 and ni2.x<=ni1.x+1 and ni2.y>=ni1.y-1 and ni2.y <=ni1.y+1 with ni2,nw1
+match(nw2:Word) where nw2.initials = ni2.name and nw2.vowel = nw1.vowel
+return nw2
+
+
+match(n0:Initials) with n0
+order by n0.x, n0.y
+with collect(n0) as nodes1
+FOREACH(i in RANGE(0,length(nodes1)-1) |
+	 FOREACH(n1 in [nodes1[i]] |
+     	CREATE (n1)-[:voice]->(n1)
+     )
+)

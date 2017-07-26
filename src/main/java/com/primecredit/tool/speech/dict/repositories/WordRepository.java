@@ -10,6 +10,5 @@ public interface WordRepository extends GraphRepository<Word> {
 
 	public Word findByName(@Param("name") String name);
 
-	@Query("MERGE (n1:Word {name:{n1Name}})-[:verb]-(n2:word {name:{n2Name}})")
-	public void createVerbRelationship(@Param("n1Name") String word1, @Param("n2Name") String word2);
+	
 }
