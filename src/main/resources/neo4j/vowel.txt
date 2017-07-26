@@ -70,6 +70,6 @@ Unwind ns as n
 Match(n1:Vowel {name:n.name}) with n1
 Match(n2:Vowel)
 where n2.x >= n1.x-1 and n2.x <= n1.x+1
-and n2.y >= n1.y-1 and n2.y <= n1.y+1
+and n2.y = n1.y
 create (n1)-[:near]->(n2)
 
