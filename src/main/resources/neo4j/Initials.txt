@@ -102,3 +102,10 @@ create (kw)-[:voice]->(kw)
 
 create (h:Initials{name:"h"})
 create (h)-[:voice]->(h)
+
+
+Match(n1:Initials {name:"b"}) with n1
+Match(n2:Initials)
+where n2.x >= n1.x-1 and n2.x <= n1.x+1
+and n2.y >= n1.y-1 and n2.y <= n1.y+1
+create (n1)-[:near]->(n2)
