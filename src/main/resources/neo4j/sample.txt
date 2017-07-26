@@ -1,54 +1,14 @@
-match (n1:Word {name:"販"}),(n2:Word {name:"人"}) with n1,n2
-match (n3:Word) ,
-where (n3.initials = n1.initials and n3.vowel = n1.vowel)
-or (n3.initials = n1.initials and n3.tone = n1.tone)
-or (n3.vowel = n1.vowel and n3.tone = n1.tone)
-(n4:Word)
-where (n4.initials = n2.initials and n4.vowel = n2.vowel)
-or (n4.initials = n2.initials and n4.tone = n2.tone)
-or (n4.vowel = n2.vowel and n4.tone = n2.tone)
-return n3, n4
-
-match (n1:Word {name:"包"}) with n1.initials as p1,n1
-match (n2:Initials {name:p1}) -[r1:voice]->(n3:Initials) with n1,n3
-match (n4:Word)
-where n4.initials = n3.name
-and n4.vowel = n1.vowel
-return n4
-
-
-match (n1:Word {name:"包"}) with n1.initials as p1,n1
-match (n2:Word {name:"苗"}) with n2.initials as p2,p1,n1,n2
-match (n3:Initials {name:p1}) -[r1:voice]->(n4:Initials) with p1,p2,n1,n2,n3,n4
-match (n5:Initials {name:p2}) -[r2:voice]->(n6:Initials) with p1,p2,n1,n2,n3,n4,n5,n6
-
-match (n7:Word) 
-where n7.initials = n4.name 
-and n7.vowel = n1.vowel
-with p1,p2,n1,n2,n3,n4,n5,n6,n7
-
-match (n8:Word) 
-where n8.initials = n6.name 
-and n8.vowel = n2.vowel
-with p1,p2,n1,n2,n3,n4,n5,n6,n7,n8
-
-match p3 = (n7)-[r:verb]->(n8) 
-return p3
-
-
-
-match (nw1:Word {name:"性"}),
-(ni1:Initials {name:nw1.initials}),
-(ni2:Initials) where ni2.x>= ni1.x-1 and ni2.x<=ni1.x+1 and ni2.y>=ni1.y-1 and ni2.y <=ni1.y+1 with ni2,nw1
-match(nw2:Word) where nw2.initials = ni2.name and nw2.vowel = nw1.vowel
-return nw2
-
-
-match(n0:Initials) with n0
-order by n0.x, n0.y
-with collect(n0) as nodes1
-FOREACH(i in RANGE(0,length(nodes1)-1) |
-	 FOREACH(n1 in [nodes1[i]] |
-     	CREATE (n1)-[:voice]->(n1)
-     )
-)
+Match (nw1:Word {name:"販"}) With nw1
+Match (ni1:Initials {name:nw1.initials})-[:near]->(ni2:Initials) With nw1,ni2
+Match (nv1:Vowel {name:nw1.vowel})-[:near]->(nv2:Vowel) With nw1,ni2,nv2
+Match (nw2:Word) 
+Where (nw2.initials = ni2.name and nw2.vowel = nw1.vowel)
+with nw2
+Match (nw1:Word {name:"人"}) With nw2,nw1
+Match (ni1:Initials {name:nw1.initials})-[:near]->(ni2:Initials) With nw2,nw1,ni2
+Match (nv1:Vowel {name:nw1.vowel})-[:near]->(nv2:Vowel) With nw2,nw1,ni2,nv2
+Match (nw3:Word) 
+Where (nw3.initials = ni2.name and nw3.vowel = nw1.vowel)
+with nw2,nw3
+Match p=(nw2)-[:verb]->(nw3)
+return p
