@@ -7,7 +7,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource("classpath:config_windows.properties")
+//@PropertySource("classpath:config_windows.properties")
+@PropertySource("classpath:config_macos.properties")
 public class SystemConfig {
 
 	@Value("${system.debug}")
@@ -27,6 +28,9 @@ public class SystemConfig {
 	
 	@Value("${wav.path}")
 	private String wavPath;
+	
+	@Value("${speech.service")
+	private String speechService; 
 
 	public String getDictionaryFolder() {
 		return dictionaryFolder;
@@ -98,5 +102,12 @@ public class SystemConfig {
 	 
 	public String getWavSourcePath() { 
 		return wavPath; 
+	}
+	
+	public boolean isGoogleSpeechApiEnable() {
+		if("Google".equalsIgnoreCase(speechService)) {
+			return true;
+		}
+		return false;
 	}
 }	

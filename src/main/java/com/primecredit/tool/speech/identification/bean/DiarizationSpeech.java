@@ -5,26 +5,15 @@ import java.util.List;
 
 public class DiarizationSpeech implements Comparable<DiarizationSpeech>{
 	
-	private String show = null;
+	
 	private String name = null;
-	private String segmentChannel = "1";
 	private int segmentStart = 0;
 	private int segmentLen = 0;
-	private String segmentGender = null;
-	private String segmentBand = null;
-	private String segmentEnvironement = null;
+	
 	private String sourceFileName = null;
 	private List<String> speechTextList = new ArrayList<String>();
 	private String speechText = "";
 
-
-	public String getShow() {
-		return show;
-	}
-
-	public void setShow(String show) {
-		this.show = show;
-	}
 
 	public String getName() {
 		return name;
@@ -34,13 +23,6 @@ public class DiarizationSpeech implements Comparable<DiarizationSpeech>{
 		this.name = name;
 	}
 
-	public String getSegmentChannel() {
-		return segmentChannel;
-	}
-
-	public void setSegmentChannel(String segmentChannel) {
-		this.segmentChannel = segmentChannel;
-	}
 
 	public int getSegmentStart() {
 		return segmentStart;
@@ -58,29 +40,6 @@ public class DiarizationSpeech implements Comparable<DiarizationSpeech>{
 		this.segmentLen = segmentLen;
 	}
 
-	public String getSegmentGender() {
-		return segmentGender;
-	}
-
-	public void setSegmentGender(String segmentGender) {
-		this.segmentGender = segmentGender;
-	}
-
-	public String getSegmentBand() {
-		return segmentBand;
-	}
-
-	public void setSegmentBand(String segmentBand) {
-		this.segmentBand = segmentBand;
-	}
-
-	public String getSegmentEnvironement() {
-		return segmentEnvironement;
-	}
-
-	public void setSegmentEnvironement(String segmentEnvironement) {
-		this.segmentEnvironement = segmentEnvironement;
-	}
 
 	public String getSourceFileName() {
 		return sourceFileName;

@@ -1,6 +1,9 @@
-package com.primecredit.tool.speech.service;
+package com.primecredit.tool.speech.services;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +17,7 @@ import com.primecredit.tool.speech.common.services.SystemConfig;
 import com.primecredit.tool.speech.dict.services.DictImportService;
 import com.primecredit.tool.speech.identification.bean.DiarizationSpeech;
 import com.primecredit.tool.speech.identification.services.SpeakerIdentificationService;
+import com.primecredit.tool.speech.recognition.services.GoogleSpeechConvertService;
 
 @Service
 public class ApplicationService {
@@ -31,8 +35,11 @@ public class ApplicationService {
 	
 	@Autowired
 	private SystemConfig systemConfig;
+	
+	@Autowired
+	private GoogleSpeechConvertService googleSpeechConvertService;
 
-	public void run() {
+	public void run() throws Exception {
 
 		logger.debug("Your application started with option names : ");
 
@@ -66,10 +73,44 @@ public class ApplicationService {
 					int segmentLen = ds.getSegmentLen();
 					String distFile = systemConfig.getWorkingPath() + String.valueOf(count) + "_" + shortFileName;
 					ds.setSourceFileName(distFile);
-					speechWavFileHandler.copyWavAudioBySecond(sourceFileName, distFile, (double) startLen/100, (double) segmentLen/100);
+					speechWavFileHandler.copyWavAudioBySecond(sourceFileName, distFile, (double) startLen, (double) segmentLen);
 					count++;		
 					
 				}
+			}
+			
+			//(5) Call Speech Convertor Service
+			for(DiarizationSpeech ds: dsList) {
+				if(systemConfig.isGoogleSpeechApiEnable()) {
+					List<String> speechTextList = googleSpeechConvertService.convert(ds.getSourceFileName());
+					ds.setSpeechTextList(speechTextList);					
+				}
+			}
+			
+			//(99) Export to file Result
+			int index = sourceFileName.indexOf(".");
+			String filefirstName = sourceFileName.substring(0, index);
+			//String ext = sourceFileName.substring(index);
+			File textFile = new File(filefirstName + ".txt");
+			
+			try (FileWriter fw = new FileWriter(textFile); BufferedWriter bw = new BufferedWriter(fw)) {
+				
+				for(int version = 1; version<=5; version++) {
+					bw.write("Version (" + version + ")");
+					bw.write("\n");
+					for(DiarizationSpeech ds: dsList) {
+						
+						bw.write(ds.getName() + " : " + ds.getSpeechTextList().get(version-1));
+						bw.write("\n");
+
+					}
+					
+					bw.write("==============================================");
+					bw.write("\n");
+					bw.write("\n");
+				}
+				bw.close();
+				fw.close();
 			}
 		}
 		// dictoryImportService.scan();

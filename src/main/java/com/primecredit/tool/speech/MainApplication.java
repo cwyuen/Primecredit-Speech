@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.primecredit.tool.speech.service.ApplicationService;
+import com.primecredit.tool.speech.services.ApplicationService;
 
 /**
  * Hello world!
