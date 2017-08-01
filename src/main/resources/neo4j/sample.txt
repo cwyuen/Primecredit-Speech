@@ -1,14 +1,15 @@
-Match (nw1:Word {name:"販"}) With nw1
+Match (nw1:Word {name:"大"}) With nw1
 Match (ni1:Initials {name:nw1.initials})-[:near]->(ni2:Initials) With nw1,ni2
 Match (nv1:Vowel {name:nw1.vowel})-[:near]->(nv2:Vowel) With nw1,ni2,nv2
 Match (nw2:Word) 
 Where (nw2.initials = ni2.name and nw2.vowel = nw1.vowel)
 with nw2
-Match (nw1:Word {name:"人"}) With nw2,nw1
+Match (nw1:Word {name:"曬"}) With nw2,nw1
 Match (ni1:Initials {name:nw1.initials})-[:near]->(ni2:Initials) With nw2,nw1,ni2
 Match (nv1:Vowel {name:nw1.vowel})-[:near]->(nv2:Vowel) With nw2,nw1,ni2,nv2
 Match (nw3:Word) 
 Where (nw3.initials = ni2.name and nw3.vowel = nw1.vowel)
 with nw2,nw3
 Match p=(nw2)-[:verb]->(nw3)
-return p
+return p limit 25
+
