@@ -77,16 +77,22 @@ public class DictImportService {
 		}
 	}
 	
-	public void test() {
-		String str1 = "鴨毛";
+	public String test(String input) {
+		String str1 = input;
 		String[] str1s = str1.split("");
 		for(String tmp : str1s) {
 			Word word = pinYinService.cantonesePinYin(tmp);
 			wordService.createWordNode(word);
 		}
-		
-		wordService.createVerbRelationship(str1);
-		
+
+		for(int i=0; i<str1s.length; i++) {
+			String tmp1 = str1s[i];
+			if(i<str1s.length-1) {
+				String tmp2 = str1s[i+1];
+				//wordService.getVerb(tmp1, tmp2);
+			}
+		}
+		return null;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.primecredit.tool.speech.dict.services;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,8 @@ import com.primecredit.tool.speech.dict.repositories.WordRepository;
 @Service
 public class WordService {
 
+	private Logger logger = Logger.getLogger(WordService.class);
+	
 	@Autowired
 	private WordRepository wordRepository;
 	
@@ -50,7 +53,9 @@ public class WordService {
 		
 	}
 	
-	public void createVerbRelationship(String str1, String str2) {
-		wordRepository.createVerbRelationship(str1, str2);
+	public Word getWord(String name) {
+		return wordRepository.findByName(name);
 	}
+	
+	
 }
