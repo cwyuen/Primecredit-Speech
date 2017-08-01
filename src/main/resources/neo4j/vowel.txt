@@ -5,26 +5,22 @@ create (:Vowel{name:"o",x:1,y:5})
 create (:Vowel{name:"u",x:1,y:6})
 create (:Vowel{name:"oe",x:1,y:7})
 create (:Vowel{name:"yu",x:1,y:9})
-
 create (:Vowel{name:"aai",x:2,y:1})
 create (:Vowel{name:"ai",x:2,y:2})
 create (:Vowel{name:"ei",x:2,y:3})
 create (:Vowel{name:"oi",x:2,y:5})
 create (:Vowel{name:"ui",x:2,y:6})
 create (:Vowel{name:"eoi",x:2,y:8})
-
 create (:Vowel{name:"aau",x:3,y:1})
 create (:Vowel{name:"au",x:3,y:2})
 create (:Vowel{name:"eu",x:3,y:3})
 create (:Vowel{name:"iu",x:3,y:4})
 create (:Vowel{name:"ou",x:3,y:5})
-
 create (:Vowel{name:"aam",x:4,y:1})
 create (:Vowel{name:"am",x:4,y:2})
 create (:Vowel{name:"em",x:4,y:3})
 create (:Vowel{name:"im",x:4,y:4})
 create (:Vowel{name:"m",x:4,y:10})
-
 create (:Vowel{name:"aan",x:5,y:1})
 create (:Vowel{name:"an",x:5,y:2})
 create (:Vowel{name:"in",x:5,y:4})
@@ -32,7 +28,6 @@ create (:Vowel{name:"on",x:5,y:5})
 create (:Vowel{name:"un",x:5,y:6})
 create (:Vowel{name:"eon",x:5,y:8})
 create (:Vowel{name:"yun",x:5,y:9})
-
 create (:Vowel{name:"aang",x:6,y:1})
 create (:Vowel{name:"ang",x:6,y:2})
 create (:Vowel{name:"eng",x:6,y:3})
@@ -41,12 +36,10 @@ create (:Vowel{name:"ong",x:6,y:5})
 create (:Vowel{name:"ung",x:6,y:6})
 create (:Vowel{name:"oeng",x:6,y:7})
 create (:Vowel{name:"ng",x:6,y:10})
-
 create (:Vowel{name:"aap",x:7,y:1})
 create (:Vowel{name:"ap",x:7,y:2})
 create (:Vowel{name:"ep",x:7,y:3})
 create (:Vowel{name:"ip",x:7,y:4})
-
 create (:Vowel{name:"aat",x:8,y:1})
 create (:Vowel{name:"at",x:8,y:2})
 create (:Vowel{name:"it",x:8,y:4})
@@ -54,7 +47,6 @@ create (:Vowel{name:"ot",x:8,y:5})
 create (:Vowel{name:"utt",x:8,y:6})
 create (:Vowel{name:"eot",x:8,y:8})
 create (:Vowel{name:"yut",x:8,y:9})
-
 create (:Vowel{name:"aak",x:9,y:1})
 create (:Vowel{name:"ak",x:9,y:2})
 create (:Vowel{name:"ek",x:9,y:3})
@@ -62,7 +54,6 @@ create (:Vowel{name:"ik",x:9,y:4})
 create (:Vowel{name:"ok",x:9,y:5})
 create (:Vowel{name:"uk",x:9,y:6})
 create (:Vowel{name:"oek",x:9,y:7})
-
 
 
 Match (n0:Vowel) with[(n0)] as ns

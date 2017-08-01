@@ -33,7 +33,7 @@
 	</Appenders>
 
 	<Loggers>
-		<Logger name="com.ermax" level="info">
+		<Logger name="com.primecredit" level="info">
 			<AppenderRef ref="App-File-Appender" />
 		</Logger>
 		<Logger name="org.springframework" level="info" additivity="false">
